@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Curb2Core | Kota untuk manusia</title>
+    <meta
+      name="description"
+      content="Landing page komunitas Curb2Core: cerita dari curb ke city core tentang transit, hunian, walkability, dan kota Indonesia yang lebih manusiawi."
+    />
+    <style>
+      :root {
+        --ink: #151813;
+        --muted: #5c6259;
+        --paper: #fbfaf5;
+        --surface: #ffffff;
+        --line: #dfe2d8;
+        --rail: #195d5a;
+        --leaf: #7ea33a;
+        --signal: #efb332;
+        --brick: #c85837;
+        --sky: #d9ecf0;
+        --shadow: 0 18px 48px rgba(21, 24, 19, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(21, 24, 19, 0.5);
+        color: #fff;
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        width: min(1180px, calc(100% - 32px));
+        min-height: 68px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 2px solid currentColor;
+        background: var(--signal);
+        color: var(--ink);
+        font-size: 18px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 0.94rem;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+      }
+
+      .nav-cta,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .nav-cta {
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .hero {
+        min-height: 92svh;
+        display: grid;
+        align-items: end;
+        position: relative;
+        color: #fff;
+        background:
+          linear-gradient(90deg, rgba(5, 20, 18, 0.88), rgba(5, 20, 18, 0.54) 44%, rgba(5, 20, 18, 0.18)),
+          linear-gradient(0deg, rgba(21, 24, 19, 0.78), rgba(21, 24, 19, 0)),
+          url("assets/curb2core-transit-corridor.png");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .hero-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 128px 0 58px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.92rem;
+        font-weight: 750;
+        text-transform: uppercase;
+      }
+
+      .kicker::before {
+        content: "";
+        width: 38px;
+        height: 3px;
+        background: var(--signal);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 860px;
+        margin-bottom: 22px;
+        font-size: clamp(3.6rem, 9vw, 8.4rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 690px;
+        margin-bottom: 30px;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(1.05rem, 2vw, 1.32rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button.primary {
+        background: var(--signal);
+        color: var(--ink);
+      }
+
+      .button.secondary {
+        border-color: rgba(255, 255, 255, 0.55);
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        width: min(1180px, calc(100% - 32px));
+        margin: 34px auto 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .stat {
+        min-height: 106px;
+        padding: 18px;
+        background: rgba(16, 20, 17, 0.72);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: clamp(1.45rem, 3vw, 2.25rem);
+        line-height: 1;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.76);
+        font-size: 0.92rem;
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.7fr);
+        gap: 36px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+
+      .eyebrow {
+        margin-bottom: 10px;
+        color: var(--rail);
+        font-size: 0.84rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: clamp(2rem, 4.4vw, 4.6rem);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .manifesto {
+        background: var(--surface);
+      }
+
+      .manifesto-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .manifesto-item {
+        min-height: 210px;
+        padding: 26px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(135deg, rgba(217, 236, 240, 0.42), transparent 45%),
+          #fff;
+      }
+
+      .manifesto-item:nth-child(2) {
+        background:
+          linear-gradient(135deg, rgba(239, 179, 50, 0.2), transparent 48%),
+          #fff;
+      }
+
+      .manifesto-item:nth-child(3) {
+        background:
+          linear-gradient(135deg, rgba(126, 163, 58, 0.2), transparent 48%),
+          #fff;
+      }
+
+      .manifesto-item:nth-child(4) {
+        background:
+          linear-gradient(135deg, rgba(200, 88, 55, 0.15), transparent 48%),
+          #fff;
+      }
+
+      .tile-icon {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        margin-bottom: 28px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      h3 {
+        margin-bottom: 10px;
+        font-size: 1.28rem;
+        line-height: 1.16;
+      }
+
+      .manifesto-item p,
+      .card p,
+      .topic p,
+      .cta-panel p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .topics {
+        background: var(--paper);
+      }
+
+      .topic-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .topic {
+        min-height: 254px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(21, 24, 19, 0.05);
+      }
+
+      .topic-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--rail);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .topic-number {
+        color: var(--brick);
+        font-weight: 900;
+      }
+
+      .community {
+        color: #fff;
+        background:
+          linear-gradient(120deg, rgba(25, 93, 90, 0.95), rgba(21, 24, 19, 0.9)),
+          var(--rail);
+      }
+
+      .community .eyebrow,
+      .community .section-head p {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .community .section-head {
+        align-items: center;
+      }
+
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .card {
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .card p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .card-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 22px;
+        color: var(--signal);
+        font-weight: 850;
+      }
+
+      .social-band {
+        padding: 34px 0;
+        background: var(--signal);
+      }
+
+      .social-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .social-inner strong {
+        font-size: clamp(1.2rem, 2.4vw, 2rem);
+        line-height: 1.05;
+      }
+
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 14px;
+        border: 1px solid rgba(21, 24, 19, 0.28);
+        border-radius: 999px;
+        font-weight: 800;
+      }
+
+      .feature {
+        background: #fff;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 34px;
+        align-items: center;
+      }
+
+      .photo-panel {
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .photo-panel img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .caption {
+        padding: 12px 14px;
+        background: #eef3ed;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .principle {
+        min-height: 96px;
+        padding: 16px;
+        border-left: 5px solid var(--rail);
+        background: var(--paper);
+      }
+
+      .principle:nth-child(2) {
+        border-color: var(--signal);
+      }
+
+      .principle:nth-child(3) {
+        border-color: var(--leaf);
+      }
+
+      .principle:nth-child(4) {
+        border-color: var(--brick);
+      }
+
+      .principle strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .principle span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .final-cta {
+        padding: 92px 0;
+        background: var(--paper);
+      }
+
+      .cta-panel {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 28px;
+        align-items: center;
+        padding: 34px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background:
+          linear-gradient(135deg, rgba(239, 179, 50, 0.22), transparent 38%),
+          #fff;
+        box-shadow: 0 10px 30px rgba(21, 24, 19, 0.07);
+      }
+
+      .cta-panel h2 {
+        margin-bottom: 12px;
+        font-size: clamp(2rem, 4vw, 4rem);
+      }
+
+      .footer {
+        padding: 34px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        background: #fff;
+        font-size: 0.88rem;
+      }
+
+      .footer-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .footer a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          min-height: 62px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: 96svh;
+          background:
+            linear-gradient(90deg, rgba(5, 20, 18, 0.9), rgba(5, 20, 18, 0.45)),
+            linear-gradient(0deg, rgba(21, 24, 19, 0.82), rgba(21, 24, 19, 0)),
+            url("assets/curb2core-transit-corridor.png");
+          background-position: center;
+          background-size: cover;
+        }
+
+        .hero-strip,
+        .manifesto-grid,
+        .section-head,
+        .feature-grid,
+        .cta-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .topic-grid,
+        .action-grid,
+        .principles {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .social-inner,
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 620px) {
+        section {
+          padding: 58px 0;
+        }
+
+        .hero-inner {
+          padding-top: 100px;
+        }
+
+        h1 {
+          font-size: clamp(3.2rem, 18vw, 5rem);
+        }
+
+        .hero-strip,
+        .topic-grid,
+        .action-grid,
+        .principles {
+          grid-template-columns: 1fr;
+        }
+
+        .stat,
+        .manifesto-item,
+        .topic,
+        .card {
+          min-height: unset;
+        }
+
+        .button,
+        .nav-cta {
+          width: 100%;
+        }
+
+        .hero-actions,
+        .social-links {
+          width: 100%;
+        }
+
+        .social-links a {
+          flex: 1 1 120px;
+          justify-content: center;
+        }
+
+        .cta-panel {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigasi utama">
+        <a class="brand" href="#top" aria-label="Curb2Core">
+          <span class="mark">C2</span>
+          <span>Curb2Core</span>
+        </a>
+        <div class="nav-links" aria-label="Bagian halaman">
+          <a href="#isu">Isu</a>
+          <a href="#komunitas">Komunitas</a>
+          <a href="#prinsip">Prinsip</a>
+        </div>
+        <a class="nav-cta" href="https://forms.gle/wE3t9gT8YFDXjm9s8">Kirim ide</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Curb2Core">
+        <div class="hero-inner">
+          <div class="kicker">Transit, hunian, walkability</div>
+          <h1>Dari curb ke city core.</h1>
+          <p class="hero-copy">
+            Curb2Core mengajak warga membaca kota dari hal yang paling dekat:
+            trotoar, halte, penyeberangan, rel, drainase, hunian, dan ongkos
+            hidup sehari-hari.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://forms.gle/wE3t9gT8YFDXjm9s8">Usulkan topik</a>
+            <a class="button secondary" href="https://www.instagram.com/curb2core">Lihat Instagram</a>
+          </div>
+          <div class="hero-strip" aria-label="Ringkasan komunitas">
+            <div class="stat">
+              <strong>3.4k+</strong>
+              <span>pengikut Instagram yang membahas kota manusiawi</span>
+            </div>
+            <div class="stat">
+              <strong>TOD</strong>
+              <span>rumah terjangkau dekat layanan dan transportasi publik</span>
+            </div>
+            <div class="stat">
+              <strong>Walk</strong>
+              <span>trotoar, zebra cross, akses kursi roda, dan rasa aman</span>
+            </div>
+            <div class="stat">
+              <strong>Core</strong>
+              <span>infrastruktur kota yang rapi, efisien, dan mudah dirawat</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Cara pandang</p>
+              <h2>Kota tidak selesai di aspal.</h2>
+            </div>
+            <p>
+              Dari kontennya, Curb2Core memakai bahasa yang mudah dipahami:
+              masalah harian warga dibedah lewat urbanisme, transportasi, dan
+              rekayasa infrastruktur yang masuk akal.
+            </p>
+          </div>
+          <div class="manifesto-grid">
+            <article class="manifesto-item">
+              <span class="tile-icon">01</span>
+              <h3>Transportasi publik adalah kapasitas, bukan aksesori.</h3>
+              <p>
+                Jalan lebar tidak otomatis mengangkut lebih banyak orang. Bus,
+                KRL, MRT, dan prioritas ruang bisa memindahkan kota dengan lahan
+                yang lebih efisien.
+              </p>
+            </article>
+            <article class="manifesto-item">
+              <span class="tile-icon">02</span>
+              <h3>Rumah murah harus murah untuk dihuni.</h3>
+              <p>
+                Hunian subsidi jauh dari kerja, sekolah, pasar, dan halte bisa
+                membuat biaya hidup naik lewat bensin, waktu tempuh, dan jarak.
+              </p>
+            </article>
+            <article class="manifesto-item">
+              <span class="tile-icon">03</span>
+              <h3>Trotoar adalah infrastruktur dasar.</h3>
+              <p>
+                Parkir liar, tiang, kabel, dan got terbuka memaksa orang turun
+                ke badan jalan. Pejalan kaki perlu ruang yang utuh, aman, dan
+                bisa dipakai semua orang.
+              </p>
+            </article>
+            <article class="manifesto-item">
+              <span class="tile-icon">04</span>
+              <h3>Solusi kota harus bisa dirawat.</h3>
+              <p>
+                Panel beton di perlintasan, drainase tertutup yang benar, dan
+                utilitas yang tertata bukan kosmetik. Itu cara membuat kota
+                bekerja lebih lama.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="topics" id="isu">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Yang dibahas</p>
+              <h2>Konten yang memulai percakapan.</h2>
+            </div>
+            <p>
+              Topik-topik ini diambil dari pola unggahan terbaru Curb2Core:
+              carousel edukatif, pertanyaan tajam, dan ajakan warga untuk
+              melihat ulang ruang kota.
+            </p>
+          </div>
+          <div class="topic-grid">
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#TransportasiPublik</span>
+                <span class="topic-number">01</span>
+              </div>
+              <h3>Lebar jalan vs jumlah orang yang diangkut</h3>
+              <p>
+                Membandingkan mobil, bus, dan kereta dari sudut kapasitas orang
+                per jam, bukan sekadar luas aspal.
+              </p>
+            </article>
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#TOD</span>
+                <span class="topic-number">02</span>
+              </div>
+              <h3>Hunian vertikal dan mid-rise dekat transit</h3>
+              <p>
+                Menggeser fokus dari harga unit ke biaya hidup total: akses,
+                waktu, layanan dasar, dan lingkungan aktif.
+              </p>
+            </article>
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#WalkableCity</span>
+                <span class="topic-number">03</span>
+              </div>
+              <h3>Zebra cross yang benar-benar terasa aman</h3>
+              <p>
+                Menjelaskan kenapa garis putih saja tidak cukup tanpa desain
+                yang memperlambat kendaraan dan memberi prioritas.
+              </p>
+            </article>
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#Trotoar</span>
+                <span class="topic-number">04</span>
+              </div>
+              <h3>Trotoar bukan ruang sisa untuk parkir</h3>
+              <p>
+                Mengembalikan fungsi trotoar bagi ibu dengan anak, lansia,
+                difabel, stroller, dan semua orang yang berjalan kaki.
+              </p>
+            </article>
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#Infrastruktur</span>
+                <span class="topic-number">05</span>
+              </div>
+              <h3>Perlintasan rel yang tidak cepat rusak</h3>
+              <p>
+                Mengubah masalah “lubang abadi” jadi diskusi material, getaran,
+                keselamatan, dan panel modular.
+              </p>
+            </article>
+            <article class="topic">
+              <div class="topic-top">
+                <span class="tag">#TataKota</span>
+                <span class="topic-number">06</span>
+              </div>
+              <h3>Kabel, got, dan detail yang membentuk kota</h3>
+              <p>
+                Membahas utilitas dan drainase sebagai bagian dari kenyamanan
+                berjalan, bukan hanya urusan teknis di balik layar.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="community" id="komunitas">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Ikut bergerak</p>
+              <h2>Komunitasnya dibangun dari kiriman warga.</h2>
+            </div>
+            <p>
+              Curb2Core membuka jalur kontribusi untuk ide topik, karya visual,
+              kreator berbayar, dan dukungan operasional. Landing page ini
+              mengarahkan semua pintu itu ke satu tempat.
+            </p>
+          </div>
+          <div class="action-grid">
+            <article class="card">
+              <div>
+                <h3>Kirim ide & topik</h3>
+                <p>Punya masalah kota yang layak dibedah? Mulai dari foto, lokasi, atau pertanyaan sederhana.</p>
+              </div>
+              <a class="card-link" href="https://forms.gle/wE3t9gT8YFDXjm9s8">Buka formulir -></a>
+            </article>
+            <article class="card">
+              <div>
+                <h3>Submit karya</h3>
+                <p>Infografis, foto, video, atau observasi lapangan bisa jadi bahan percakapan publik.</p>
+              </div>
+              <a class="card-link" href="https://forms.gle/dwzXpCySyt7tHm7p6">Kirim karya -></a>
+            </article>
+            <article class="card">
+              <div>
+                <h3>Content creator</h3>
+                <p>Untuk kreator gambar atau video yang ingin membantu produksi konten urbanisme.</p>
+              </div>
+              <a class="card-link" href="https://forms.gle/6Ai6SYmBRuQnvhTB9">Daftar kolaborasi -></a>
+            </article>
+            <article class="card">
+              <div>
+                <h3>Dukung produksi</h3>
+                <p>Bantu riset, desain, dan publikasi konten agar percakapan kota tetap hidup.</p>
+              </div>
+              <a class="card-link" href="https://saweria.co/curb2core">Dukung via Saweria -></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="social-band" aria-label="Tautan sosial">
+        <div class="social-inner">
+          <strong>Ikuti percakapannya di kanal Curb2Core.</strong>
+          <div class="social-links">
+            <a href="https://www.instagram.com/curb2core">Instagram</a>
+            <a href="https://www.tiktok.com/@curb2core">TikTok</a>
+            <a href="https://www.threads.com/@curb2core">Threads</a>
+            <a href="https://www.youtube.com/@Curb2Core?sub_confirmation=1">YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="feature" id="prinsip">
+        <div class="wrap">
+          <div class="feature-grid">
+            <figure class="photo-panel">
+              <img
+                src="assets/curb2core-transit-corridor.png"
+                alt="Ilustrasi koridor kota dari trotoar menuju halte dan stasiun transit"
+              />
+              <figcaption class="caption">
+                Ilustrasi lokal: koridor transit, hunian, trotoar, dan ruang kota manusiawi.
+              </figcaption>
+            </figure>
+            <div>
+              <p class="eyebrow">Prinsip desain</p>
+              <h2>Terasa ringan, tetapi argumennya tajam.</h2>
+              <p>
+                Gaya komunikasi Curb2Core cocok untuk halaman yang lugas: judul
+                besar, contoh konkret, dan ajakan tindakan. Bukan brosur
+                institusi, melainkan ruang warga untuk bertanya kenapa kota kita
+                dirancang seperti ini dan bagaimana memperbaikinya.
+              </p>
+              <div class="principles">
+                <div class="principle">
+                  <strong>Bahasa sehari-hari</strong>
+                  <span>Teknis boleh, tapi harus bisa dipakai warga untuk melihat kotanya.</span>
+                </div>
+                <div class="principle">
+                  <strong>Berangkat dari masalah nyata</strong>
+                  <span>Macet, takut menyeberang, trotoar terhalang, rumah jauh dari layanan.</span>
+                </div>
+                <div class="principle">
+                  <strong>Solusi yang bisa dibayangkan</strong>
+                  <span>Panel beton, pelican crossing, mid-rise, TOD, drainase tertutup.</span>
+                </div>
+                <div class="principle">
+                  <strong>Ajakan berdiskusi</strong>
+                  <span>Setiap isu dibuat terbuka untuk pengalaman dan ide warga lain.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <div class="wrap">
+          <div class="cta-panel">
+            <div>
+              <p class="eyebrow">Kota untuk manusia</p>
+              <h2>Punya cerita dari curb kamu?</h2>
+              <p>
+                Kirim foto, lokasi, atau keresahan kecil yang sering dianggap
+                biasa. Bisa jadi, dari satu curb lahir percakapan besar tentang
+                cara kota bergerak.
+              </p>
+            </div>
+            <a class="button primary" href="https://forms.gle/wE3t9gT8YFDXjm9s8">Kirim sekarang</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Landing page concept for Curb2Core community content.</span>
+        <span>
+          Based on public Curb2Core profile signals and transit community themes.
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
