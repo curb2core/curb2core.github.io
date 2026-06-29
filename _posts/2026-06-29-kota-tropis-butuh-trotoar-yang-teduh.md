@@ -1,5 +1,4 @@
 ---
-
 title: "Kota Tropis Butuh Trotoar yang Teduh"
 description: "Di kota tropis, naungan bukan sekadar pelengkap estetika. Trotoar yang teduh dan terlindung adalah infrastruktur dasar agar berjalan kaki tetap nyaman saat panas maupun hujan."
 date: 2026-06-29
@@ -7,10 +6,8 @@ modified: 2026-06-29
 author: "Curb2Core"
 category: "Pejalan Kaki"
 tags: ["trotoar", "kota tropis", "pejalan kaki", "first mile last mile", "transportasi publik", "kota tahan panas", "urban planning"]
-image: "assets/blog/60. trotoar berkanopi.png"
--------------------------------------------------
-
-# Kota Tropis Butuh Trotoar yang Teduh
+image: "/assets/blog/kota-tropis-trotoar-teduh.png"
+---
 
 Di kota tropis, berjalan kaki bukan cuma soal jarak. Kenyamanan perjalanan juga dipengaruhi oleh panas matahari, hujan, kelembapan, dan keberadaan tempat untuk berteduh.
 

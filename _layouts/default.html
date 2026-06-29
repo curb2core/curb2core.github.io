@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'id' }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}" />
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    <meta property="og:site_name" content="{{ site.title | escape }}" />
+    <meta property="og:title" content="{{ page.title | default: site.title | escape }}" />
+    <meta property="og:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | escape }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+    {% if page.image %}
+    <meta property="og:image" content="{{ page.image | absolute_url }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {% else %}
+    <meta name="twitter:card" content="summary" />
+    {% endif %}
+    <style>
+      :root {
+        --ink: #151813;
+        --muted: #5c6259;
+        --paper: #fbfaf5;
+        --surface: #ffffff;
+        --line: #dfe2d8;
+        --rail: #195d5a;
+        --leaf: #7ea33a;
+        --signal: #efb332;
+        --brick: #c85837;
+        --sky: #d9ecf0;
+        --shadow: 0 18px 48px rgba(21, 24, 19, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: sticky;
+        z-index: 20;
+        top: 0;
+        border-bottom: 1px solid rgba(21, 24, 19, 0.1);
+        background: rgba(251, 250, 245, 0.86);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        width: min(1120px, calc(100% - 32px));
+        min-height: 68px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 850;
+      }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 2px solid currentColor;
+        background: var(--signal);
+        color: var(--ink);
+        font-size: 18px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.94rem;
+        font-weight: 700;
+      }
+
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--rail);
+        font-size: 0.82rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border-radius: 999px;
+        background: var(--signal);
+        color: var(--ink);
+        font-weight: 850;
+      }
+
+      .page-hero {
+        padding: 70px 0 42px;
+      }
+
+      .page-hero h1,
+      .post-hero h1 {
+        max-width: 900px;
+        margin: 0;
+        font-size: clamp(2.6rem, 7vw, 6.2rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .page-hero p,
+      .post-desc {
+        max-width: 720px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.02rem, 2vw, 1.2rem);
+      }
+
+      .post-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        padding-bottom: 86px;
+      }
+
+      .post-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(21, 24, 19, 0.05);
+      }
+
+      .post-card img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        background: var(--sky);
+      }
+
+      .post-card-body {
+        padding: 22px;
+      }
+
+      .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+        color: var(--rail);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .post-card h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.45rem, 3vw, 2.2rem);
+        line-height: 1.05;
+      }
+
+      .post-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .post-hero {
+        padding: 58px 0 30px;
+      }
+
+      .post-cover {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto 42px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: var(--sky);
+        box-shadow: var(--shadow);
+      }
+
+      .post-cover img {
+        width: 100%;
+        max-height: 620px;
+        object-fit: cover;
+      }
+
+      .article-shell {
+        width: min(760px, calc(100% - 32px));
+        margin: 0 auto;
+        padding-bottom: 82px;
+      }
+
+      .article-shell article {
+        font-size: 1.08rem;
+      }
+
+      .article-shell h2 {
+        margin: 42px 0 12px;
+        font-size: clamp(1.7rem, 3vw, 2.55rem);
+        line-height: 1.1;
+      }
+
+      .article-shell p {
+        margin: 0 0 18px;
+      }
+
+      .article-shell ul {
+        padding-left: 1.2rem;
+      }
+
+      .article-shell li {
+        margin: 8px 0;
+      }
+
+      .article-shell hr {
+        margin: 42px 0 20px;
+        border: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 30px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--rail);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .footer {
+        padding: 34px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        background: #fff;
+        font-size: 0.88rem;
+      }
+
+      .footer-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+        }
+
+        .post-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigasi utama">
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="Curb2Core">
+          <span class="mark">C2</span>
+          <span>Curb2Core</span>
+        </a>
+        <div class="nav-links" aria-label="Bagian halaman">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/blog/' | relative_url }}">Blog</a>
+          <a href="https://www.instagram.com/curb2core">Instagram</a>
+        </div>
+      </nav>
+    </header>
+    {{ content }}
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>Landing page concept for Curb2Core community content.</span>
+        <span>Stories from the curb to the city core.</span>
+      </div>
+    </footer>
+  </body>
+</html>

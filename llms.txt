@@ -1,0 +1,12 @@
+# Curb2Core
+
+Curb2Core adalah komunitas konten urbanisme Indonesia yang membahas cerita dari curb ke city core: transit, hunian, walkability, ruang publik, aksesibilitas, dan tata kota manusiawi.
+
+## Important pages
+
+- Home: https://curb2core.github.io/
+- Blog: https://curb2core.github.io/blog/
+
+## Content notes
+
+Artikel blog disusun sebagai halaman HTML statis dengan metadata judul, deskripsi, tanggal publikasi, kategori, tag, gambar utama, canonical URL, Open Graph metadata, dan JSON-LD BlogPosting.

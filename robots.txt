@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://curb2core.github.io/sitemap.xml

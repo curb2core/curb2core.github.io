@@ -1,0 +1,41 @@
+---
+layout: default
+title: Blog
+description: Artikel Curb2Core tentang transportasi publik, walkability, hunian, ruang publik, dan tata kota manusiawi.
+permalink: /blog/
+---
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Blog Curb2Core</p>
+      <h1>Catatan kota untuk manusia.</h1>
+      <p>
+        Artikel panjang dari percakapan Curb2Core: transit, trotoar, gedung
+        publik, hunian, ruang jalan, dan detail kota yang sering kita alami
+        setiap hari.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="post-grid">
+      {% for post in site.posts %}
+      <article class="post-card">
+        <a href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
+          {% if post.image %}
+          <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" />
+          {% endif %}
+          <div class="post-card-body">
+            <div class="post-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d %B %Y" }}</time>
+              <span>{{ post.category }}</span>
+            </div>
+            <h2>{{ post.title | escape }}</h2>
+            <p>{{ post.description | escape }}</p>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</main>

@@ -1,0 +1,22 @@
+title: Curb2Core
+description: Cerita dari curb ke city core tentang transit, hunian, walkability, dan kota Indonesia yang lebih manusiawi.
+url: "https://curb2core.github.io"
+baseurl: ""
+lang: id
+timezone: Asia/Jakarta
+permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Curb2Core
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml

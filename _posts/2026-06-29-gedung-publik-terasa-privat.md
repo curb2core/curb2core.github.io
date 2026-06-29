@@ -6,10 +6,8 @@ modified: 2026-06-29
 author: "Curb2Core"
 category: "Ruang Publik"
 tags: ["ruang publik", "gedung publik", "urban design", "aksesibilitas", "tata kota"]
-image: "assets/blog/62. gedung terbuka.png"
+image: "/assets/blog/gedung-publik-terasa-privat.png"
 ---
-
-# Gedung Milik Publik, Tapi Kok Terasa Privat?
 
 Banyak gedung publik berdiri megah di tengah kota. Tapi dari jalan, sering kali yang paling terasa bukan pelayanannya, melainkan pagar tinggi, pos jaga besar, halaman kosong, dan akses yang kaku.
 
