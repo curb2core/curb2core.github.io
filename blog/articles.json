@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /blog/articles.json
+---
+{
+  "site": {
+    "name": {{ site.title | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "url": {{ site.url | jsonify }}
+  },
+  "articles": [
+    {% for post in site.posts %}
+    {
+      "title": {{ post.title | jsonify }},
+      "description": {{ post.description | jsonify }},
+      "url": {{ post.url | absolute_url | jsonify }},
+      "markdown_url": {{ "/blog/md/" | append: post.slug | append: ".md" | absolute_url | jsonify }},
+      "image": {{ post.image | absolute_url | jsonify }},
+      "date_published": {{ post.date | date_to_xmlschema | jsonify }},
+      "date_modified": {{ post.modified | default: post.date | date_to_xmlschema | jsonify }},
+      "author": {{ post.author | default: site.title | jsonify }},
+      "category": {{ post.category | jsonify }},
+      "tags": {{ post.tags | jsonify }},
+      "text": {{ post.content | strip_html | normalize_whitespace | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}

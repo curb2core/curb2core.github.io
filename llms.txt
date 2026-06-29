@@ -1,12 +1,31 @@
+---
+layout: null
+---
 # Curb2Core
 
 Curb2Core adalah komunitas konten urbanisme Indonesia yang membahas cerita dari curb ke city core: transit, hunian, walkability, ruang publik, aksesibilitas, dan tata kota manusiawi.
 
 ## Important pages
 
-- Home: https://curb2core.github.io/
-- Blog: https://curb2core.github.io/blog/
+- Home: {{ "/" | absolute_url }}
+- Blog: {{ "/blog/" | absolute_url }}
+- Article metadata JSON: {{ "/blog/index.json" | absolute_url }}
+- Full article text JSON: {{ "/blog/articles.json" | absolute_url }}
+- Sitemap: {{ "/sitemap.xml" | absolute_url }}
+
+## Articles
+
+{% for post in site.posts -%}
+- {{ post.title }}
+  - URL: {{ post.url | absolute_url }}
+  - Markdown: {{ "/blog/md/" | append: post.slug | append: ".md" | absolute_url }}
+  - Category: {{ post.category }}
+  - Date: {{ post.date | date: "%Y-%m-%d" }}
+  - Description: {{ post.description }}
+{% endfor %}
 
 ## Content notes
 
 Artikel blog disusun sebagai halaman HTML statis dengan metadata judul, deskripsi, tanggal publikasi, kategori, tag, gambar utama, canonical URL, Open Graph metadata, dan JSON-LD BlogPosting.
+
+Gunakan URL artikel HTML untuk tampilan pembaca. Gunakan file Markdown atau JSON jika membutuhkan representasi konten yang lebih mudah diproses oleh agent, crawler, atau sistem pencarian.
