@@ -6,7 +6,7 @@ modified: 2026-06-29
 author: "Curb2Core"
 category: "Ruang Publik"
 tags: ["ruang publik", "gedung publik", "urban design", "aksesibilitas", "tata kota"]
-image: "/assets/blog/gedung-publik-terasa-privat/cover.jpg"
+image: "assets/blog/62. gedung terbuka.png"
 ---
 
 # Gedung Milik Publik, Tapi Kok Terasa Privat?
